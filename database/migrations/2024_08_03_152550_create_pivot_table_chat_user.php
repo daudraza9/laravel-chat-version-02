@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('chat_id')->nullable()->constrained('chats')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('user_id')->nullable()->constrained('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->timestamp('admin_assigned_at')->nullable();
+            $table->timestamp('removed_at')->nullable();
             $table->timestamps();
         });
     }
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pivot_table_chat_user');
+        Schema::dropIfExists('chat_user');
     }
 };

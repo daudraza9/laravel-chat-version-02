@@ -42,4 +42,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function chats()
+    {
+        return $this->belongsToMany(Chat::class)->withTimestamps()->withPivot('admin_assigned_at', 'removed_at');
+    }
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
+
+    public function receivedMessages()
+    {
+        return $this->belongsToMany(Message::class, 'message_user')->withTimestamps()->withPivot('read_at');
+    }
 }

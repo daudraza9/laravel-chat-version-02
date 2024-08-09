@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('chat_id')->nullable()->constrained('chats')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('user_id')->nullable()->constrained('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('attachment_id')->nullable()->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->text('message');
+            $table->nullableMorphs('messageble');
             $table->timestamps();
         });
     }

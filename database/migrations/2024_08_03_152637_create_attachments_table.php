@@ -14,8 +14,6 @@ return new class extends Migration
         Schema::create('attachments', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('message_id')->nullable()->constrained('messages')->onUpdate('cascade')->onDelete('cascade');
-            $table->longText('path');
             $table->timestamps();
         });
     }

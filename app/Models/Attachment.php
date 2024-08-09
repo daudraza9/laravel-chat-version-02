@@ -7,5 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Attachment extends Model
 {
-    use HasFactory;
+    protected $fillable = ['name'];
+
+    public function chats()
+    {
+        return $this->hasMany(Chat::class, 'profile_id');
+    }
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class, 'attachment_id');
+    }
 }

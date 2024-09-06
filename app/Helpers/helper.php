@@ -1,7 +1,8 @@
 <?php
 
 
+
 class ChatType{
-    const PERSONAL = 1;
-    const GROUP = 2;
+    const PERSONAL_CHAT = 1;
+    const GROUP_CHAT = 2;
 }

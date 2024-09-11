@@ -101,21 +101,49 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-          
+            function loadChats(){
+                $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: "GET",
+                processData: false,
+                contentType: false,
+                url: form_action,
+                data: formData,
+                success: function(data) {
+                    if (data.status) {
+                        console.log
+                    } else {
+
+                    }
+
+                },
+                error: function(response) {
+
+                },
+            });
+            }
         });
 
         function selectChatOption(chatType) {
             if (chatType == '{{ ChatType::PERSONAL_CHAT }}') {
                 console.log('personal');
+                $('#chat-type-input').val('{{ ChatType::PERSONAL_CHAT }}');
+                $('#group-chat').addClass('d-none');
                 $('#userChatModalTitle').html('Personal Chat')
                 $('#userChatModal').modal('show');
+
             } else if (chatType == '{{ ChatType::GROUP_CHAT }}') {
                 console.log('group chat');
+                $('#chat-type-input').val('{{ ChatType::GROUP_CHAT }}');
+                $('#group-chat').removeClass('d-none');
                 $('#userChatModalTitle').html('Group Chat')
                 $('#userChatModal').modal('show');
             } else {
                 alert('slection not valid');
             }
         }
+
     </script>
 @endpush

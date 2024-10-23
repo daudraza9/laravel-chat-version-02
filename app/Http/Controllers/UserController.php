@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    public function select2List(Request $request){
+    public function select2List(Request $request)
+    {
         $users = User::select('id', 'name');
         $keyword = $request->name;
         $users = $users->where(function ($users) use ($keyword) {
